@@ -1,6 +1,7 @@
 body {
   margin: 0;
   font-family: Arial, Helvetica, sans-serif;
+  overflow: hidden;
 }
 
 .map {
@@ -23,4 +24,40 @@ body {
 }
 .loader h1 {
   font-size: 2rem;
+}
+
+.location-info {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 0.5rem;
+  margin: 1rem;
+  font-size: 1.5rem;
+}
+
+.location-info ul {
+  list-style-type: none;
+  padding: 0;
+  font-size: medium;
+}
+
+.location-info ul li {
+  margin-bottom: 0.5rem;
+  font-size: medium;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #333;
+  color: #fff;
+  height: 60px;
+}
+
+.header h1 {
+  font-size: 2rem;
+  text-align: center;
 }

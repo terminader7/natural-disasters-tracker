@@ -1,12 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import Map, { Marker } from "react-map-gl";
-import "mapbox-gl/dist/mapbox-gl.css"; // Import the CSS
+import "mapbox-gl/dist/mapbox-gl.css";
 import { Icon } from "@iconify/react";
 import locationIcon from "@iconify/icons-mdi/fire-alert";
+import LocationInfoBox from "./LocationInfoBox";
 
 const mapboxAccessToken = process.env.REACT_APP_MAPBOX_ACCESS_TOKEN;
 
 const MapComponent = ({ eventData }) => {
+  const [locationInfo, setLocationInfo] = useState(null);
+
   const [viewport, setViewport] = React.useState({
     longitude: -118.2426,
     latitude: 34.0549,
@@ -20,6 +23,7 @@ const MapComponent = ({ eventData }) => {
           key={ev.id}
           latitude={ev.geometries[0].coordinates[1]}
           longitude={ev.geometries[0].coordinates[0]}
+          onClick={() => setLocationInfo({ id: ev.id, title: ev.title })}
         >
           <Icon icon={locationIcon} className="location-icon" />
         </Marker>
@@ -38,6 +42,7 @@ const MapComponent = ({ eventData }) => {
       >
         {markers}
       </Map>
+      {locationInfo && <LocationInfoBox info={locationInfo} />}
     </div>
   );
 };
