@@ -6,15 +6,29 @@ import locationIcon from "@iconify/icons-mdi/fire-alert";
 
 const mapboxAccessToken = process.env.REACT_APP_MAPBOX_ACCESS_TOKEN;
 
-const MapComponent = () => {
+const MapComponent = ({ eventData }) => {
   const [viewport, setViewport] = React.useState({
     longitude: -118.2426,
     latitude: 34.0549,
     zoom: 6,
   });
 
+  const markers = eventData?.map((ev) => {
+    if (ev.categories[0].id === 8) {
+      return (
+        <Marker
+          key={ev.id}
+          latitude={ev.geometries[0].coordinates[1]}
+          longitude={ev.geometries[0].coordinates[0]}
+        >
+          <Icon icon={locationIcon} className="location-icon" />
+        </Marker>
+      );
+    }
+  });
+
   return (
-    <div className="map" style={{ height: "100vh", width: "100%" }}>
+    <div className="map">
       <Map
         initialViewState={viewport}
         style={{ width: "100%", height: "100%" }}
@@ -22,9 +36,7 @@ const MapComponent = () => {
         mapboxAccessToken={mapboxAccessToken}
         onViewportChange={(nextViewport) => setViewport(nextViewport)}
       >
-        <Marker latitude={viewport.latitude} longitude={viewport.longitude}>
-          <Icon icon={locationIcon} className="location-icon" />
-        </Marker>
+        {markers}
       </Map>
     </div>
   );
