@@ -10,9 +10,24 @@ body {
   position: relative;
 }
 
-.location-icon {
+.location-icon-fire {
   font-size: 1.5rem;
   color: #f00;
+}
+
+.location-icon-volcano {
+  font-size: 1.5rem;
+  color: #ff7f00;
+}
+
+.location-icon-snow {
+  font-size: 1.5rem;
+  color: #00f;
+}
+
+.location-icon-storm {
+  font-size: 1.5rem;
+  color: #ff0;
 }
 
 .loader {
